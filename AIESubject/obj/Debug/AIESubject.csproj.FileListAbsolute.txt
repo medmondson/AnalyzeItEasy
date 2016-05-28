@@ -1,1 +1,9 @@
 c:\users\matt\documents\visual studio 2015\Projects\AIESubject\AIESubject\bin\Debug\AIESubject.exe.config
+C:\Users\matt\Source\Repos\AnalyzeItEasy\AIESubject\bin\Debug\AIESubject.exe.config
+C:\Users\matt\Source\Repos\AnalyzeItEasy\AIESubject\obj\Debug\AIESubject.csprojResolveAssemblyReference.cache
+C:\Users\matt\Source\Repos\AnalyzeItEasy\AIESubject\bin\Debug\AIESubject.exe
+C:\Users\matt\Source\Repos\AnalyzeItEasy\AIESubject\bin\Debug\AIESubject.pdb
+C:\Users\matt\Source\Repos\AnalyzeItEasy\AIESubject\bin\Debug\FakeItEasy.dll
+C:\Users\matt\Source\Repos\AnalyzeItEasy\AIESubject\bin\Debug\FakeItEasy.xml
+C:\Users\matt\Source\Repos\AnalyzeItEasy\AIESubject\obj\Debug\AIESubject.exe
+C:\Users\matt\Source\Repos\AnalyzeItEasy\AIESubject\obj\Debug\AIESubject.pdb
