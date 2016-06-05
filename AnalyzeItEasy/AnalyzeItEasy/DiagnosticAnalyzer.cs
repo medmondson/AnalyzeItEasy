@@ -30,12 +30,33 @@ namespace AnalyzeItEasy
         {
             // TODO: Consider registering other actions that act on syntax instead of or in addition to symbols
             // See https://github.com/dotnet/roslyn/blob/master/docs/analyzers/Analyzer%20Actions%20Semantics.md for more information
-            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.NamedType);
+            context.RegisterSyntaxNodeAction(AnalyzeSymbol, SyntaxKind.InvocationExpression);
         }
 
-        private static void AnalyzeSymbol(SymbolAnalysisContext context)
+        private static void AnalyzeSymbol(SyntaxNodeAnalysisContext syntaxNodeAnalysisContext)
         {
-            //Add analysis
+            //Need an InvocationExpression
+            SymbolInfo symbolInfo =  syntaxNodeAnalysisContext.SemanticModel.GetSymbolInfo(syntaxNodeAnalysisContext.Node);
+
+            ImmutableArray<ITypeSymbol> typeArguments = ((IMethodSymbol)symbolInfo.Symbol).TypeArguments;
+
+            bool containsVirtualMember = false;
+
+            foreach (ITypeSymbol typeArgument in typeArguments)
+            {
+                containsVirtualMember = typeArgument.GetMembers().Any(m => m.IsVirtual);
+                //Analyze each for members that are non-virtual
+            }
+
+            if (containsVirtualMember)
+            {
+                Location location = syntaxNodeAnalysisContext.Node.GetLocation();
+
+                Diagnostic diagnostic = Diagnostic.Create(Rule, location, ((IMethodSymbol)symbolInfo.Symbol).ReceiverType.Name);
+                syntaxNodeAnalysisContext.ReportDiagnostic(diagnostic);
+
+            }
+
         }
     }
 }
