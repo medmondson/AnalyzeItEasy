@@ -38,6 +38,8 @@ namespace AnalyzeItEasy
             //Need an InvocationExpression
             SymbolInfo symbolInfo =  syntaxNodeAnalysisContext.SemanticModel.GetSymbolInfo(syntaxNodeAnalysisContext.Node);
 
+           //Exclude interface here
+
             ImmutableArray<ITypeSymbol> typeArguments = ((IMethodSymbol)symbolInfo.Symbol).TypeArguments;
 
             bool containsVirtualMember = false;
@@ -48,7 +50,7 @@ namespace AnalyzeItEasy
                 //Analyze each for members that are non-virtual
             }
 
-            if (containsVirtualMember)
+            if (!containsVirtualMember)
             {
                 Location location = syntaxNodeAnalysisContext.Node.GetLocation();
 

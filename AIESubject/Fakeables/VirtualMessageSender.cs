@@ -11,9 +11,6 @@ namespace AIESubject.Fakeables
     {
         public virtual void Send(MailAddress recipient, string messageBody)
         {
-            //Because this method is marked virtual it's not possible for FIE to
-            //mock.  Meaning that the actual implementation will be executed.
-
             throw new NotImplementedException();
         }
     }
