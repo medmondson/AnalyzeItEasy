@@ -38,27 +38,29 @@ namespace AnalyzeItEasy
             //Need an InvocationExpression
             SymbolInfo symbolInfo =  syntaxNodeAnalysisContext.SemanticModel.GetSymbolInfo(syntaxNodeAnalysisContext.Node);
 
-           //Exclude interface here
+            var typeArguments = ((IMethodSymbol)symbolInfo.Symbol).TypeArguments;
 
-            ImmutableArray<ITypeSymbol> typeArguments = ((IMethodSymbol)symbolInfo.Symbol).TypeArguments;
-
-            bool containsVirtualMember = false;
-
-            foreach (ITypeSymbol typeArgument in typeArguments)
+            foreach (var typeArgument in typeArguments)
             {
-                containsVirtualMember = typeArgument.GetMembers().Any(m => m.IsVirtual);
-                //Analyze each for members that are non-virtual
+                if(typeArgument.TypeKind == TypeKind.Interface)
+                    continue;
+
+                var containsVirtualMember = typeArgument.GetMembers().Any(m => m.IsVirtual);
+
+                if (!containsVirtualMember)
+                {
+                    ReportDiagnostic(syntaxNodeAnalysisContext, symbolInfo);
+                }
             }
 
-            if (!containsVirtualMember)
-            {
-                Location location = syntaxNodeAnalysisContext.Node.GetLocation();
+        }
 
-                Diagnostic diagnostic = Diagnostic.Create(Rule, location, ((IMethodSymbol)symbolInfo.Symbol).ReceiverType.Name);
-                syntaxNodeAnalysisContext.ReportDiagnostic(diagnostic);
+        private static void ReportDiagnostic(SyntaxNodeAnalysisContext syntaxNodeAnalysisContext, SymbolInfo symbolInfo)
+        {
+            Location location = syntaxNodeAnalysisContext.Node.GetLocation();
 
-            }
-
+            Diagnostic diagnostic = Diagnostic.Create(Rule, location, ((IMethodSymbol) symbolInfo.Symbol).ReceiverType.Name);
+            syntaxNodeAnalysisContext.ReportDiagnostic(diagnostic);
         }
     }
 }

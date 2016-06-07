@@ -50,6 +50,7 @@
     <Compile Include="Fakeables\IMessageSender.cs" />
     <Compile Include="Fakeables\NonVirtualMessageSender.cs" />
     <Compile Include="Fakeables\VirtualMessageSender.cs" />
+    <Compile Include="Gym.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AIESubject.Fakeables
 {
-    class NonVirtualMessageSender : IMessageSender
+    public class NonVirtualMessageSender : IMessageSender
     {
         public void Send(MailAddress recipient, string messageBody)
         {

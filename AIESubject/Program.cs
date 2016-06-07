@@ -16,6 +16,9 @@ namespace AIESubject
             //A non-virtual object - highlight, real code will be ran!
             var fakeObjectNonVirtual = A.Fake<NonVirtualMessageSender>();
 
+            Gym gym = new Gym(fakeObjectNonVirtual);
+            gym.Excerise();
+
         }
     }
 }
