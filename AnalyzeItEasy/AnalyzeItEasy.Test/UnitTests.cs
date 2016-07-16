@@ -14,7 +14,7 @@ namespace AnalyzeItEasy.Test
 
         //No diagnostics expected to show up
         [TestMethod]
-        public void TestMethod1()
+        public void EmptyCode_ExpectNoDiagnostics()
         {
             var test = @"";
 
