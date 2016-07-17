@@ -71,7 +71,7 @@ namespace AnalyzeItEasy {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Type name &apos;{0}&apos; contains members that cannot be faked.
+        ///   Looks up a localized string similar to Type name &apos;{0}&apos; only contains members that cannot be faked.
         /// </summary>
         internal static string AnalyzerMessageFormat {
             get {
