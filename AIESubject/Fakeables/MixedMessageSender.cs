@@ -3,9 +3,11 @@ using System.Net.Mail;
 
 namespace AIESubject.Fakeables
 {
-    public class VirtualMessageSender : IMessageSender
+    class MixedMessageSender : IMessageSender
     {
-        public virtual void Send(MailAddress recipient, string messageBody)
+        //A mix of virtual and non-virtual methods to demonstrate the ability to handle false positives
+
+        public void Send(MailAddress recipient, string messageBody)
         {
             throw new NotImplementedException();
         }

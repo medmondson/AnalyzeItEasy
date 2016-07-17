@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fakeables\IMessageSender.cs" />
+    <Compile Include="Fakeables\MixedMessageSender.cs" />
     <Compile Include="Fakeables\NonVirtualMessageSender.cs" />
     <Compile Include="Fakeables\VirtualMessageSender.cs" />
     <Compile Include="Gym.cs" />
